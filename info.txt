@@ -1,0 +1,34 @@
+Projeto
+
+Criar um Ecommerce!
+
+Utilizar ReactJS para o front, modelar o banco de dados do sistema e desenvolver o backend com Express.
+
+-------------------------------------
+• Desenvolver uma página principal com listagem de produtos.
+=> Produto? Livros
+=> O que terá de informações sobre a listagem? Nome, Autor, Preço, Tipo de Capa
+
+-------------------------------------
+• Desenvolver uma página com detalhes do produto com a opção de comprar.
+- Detalhes do Produto:
+=> Nome, Autor, Sinopse do Livro, Gênero, Nº de páginas, Idioma, Editora, Data Publicação, Tempo de Entrega, Em estoque?,
+
+-------------------------------------
+• Criar a função de carrinho de compras, salvando os produtos selecionados no localStorage.
+=>
+
+-------------------------------------
+• Desenvolver o cadastro
+- Criar conta
+=> Nome, celular ou email, senha
+
+• Login de usuário.
+=> celular/email, senha
+
+-------------------------------------
+• Desenvolver a tela de finalização da compra.
+=> Confirmação de compra
+=> Número do pedido
+=> Status do pedido
+=> Valor gasto
