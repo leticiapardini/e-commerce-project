@@ -1,0 +1,16 @@
+Projeto
+
+Criar um Ecommerce!
+
+
+Utilizar ReactJS para o front, modelar o banco de dados do sistema e desenvolver o backend com Express.
+
+• Desenvolver uma página principal com listagem de produtos.
+
+• Desenvolver uma página com detalhes do produto com a opção de comprar.
+
+• Criar a função de carrinho de compras, salvando os produtos selecionados no localStorage.
+
+• Desenvolver o cadastro e login de usuário.
+
+• Desenolver a tela de finalização da compra.
