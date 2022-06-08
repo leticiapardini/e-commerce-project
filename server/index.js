@@ -94,5 +94,7 @@ server.delete('/users/:id', (request, response) => {
     response.send({})
 });
 
+// TODO fazer processo acima para PROTUDOS(LIVROS)
+
 const PORT = 3333;
 server.listen(PORT, () => console.log(`~*~ Server listening on PORT: ${PORT}. ~*~`));
