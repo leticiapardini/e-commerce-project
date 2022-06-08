@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import {  Container, Nav, Navbar } from 'react-bootstrap';
 // import Navbar from 'react-bootstrap/Navbar';
 import logo from '../logo/logo.png';
-import { ShoppingCartOutlined, UserAddOutlined } from '@ant-design/icons';
+import {  UserAddOutlined } from '@ant-design/icons';
+import { CartProduct } from '../Cart';
+
 
 function NavBar() {
-
-
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -24,10 +24,11 @@ function NavBar() {
             <Nav>
               <Nav.Link href="#deets">
                 {' '}
-                <UserAddOutlined style={{ fontSize: '25px' }} /> Entre/Cadastre-se
+                <UserAddOutlined style={ { fontSize: '25px'}} />
+                Entre/Cadastre-se
               </Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
-                <ShoppingCartOutlined style={{ fontSize: '25px' }} />
+                <CartProduct />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
