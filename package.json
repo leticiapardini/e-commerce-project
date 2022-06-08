@@ -1,0 +1,8 @@
+{
+  "name": "projeto-final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/leticiapardini/e-commerce-project.git",
+  "author": "Letícia Pardini <pardini448@gmail.com>",
+  "license": "MIT"
+}

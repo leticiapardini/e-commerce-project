@@ -1,28 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
-import { NavBar } from './NavBar';
-import BookCards from './BookCards';
-import { Offcanvas } from 'react-bootstrap';
+import { NavBar } from './components/NavBar';
+import BookCards from './components/BookCards';
+import { Carrousel } from './components/Carrossel';
+
 
 function App() {
-  
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  //onClick={handleShow}
-  const handleShow = () => setShow(true);
 
-  interface handleCart {
-    handleShow: () => void;
-  }
 
   return (
     <>
       <NavBar></NavBar>
+      <Carrousel></Carrousel>
       <BookCards></BookCards>
-      <Offcanvas show={show} onHide={handleClose}>
-        Carrinho de Compras
-      </Offcanvas>
+
     </>
   );
 }
