@@ -81,8 +81,9 @@ server.put('/users/:id', (request, response) => {
         email,
         password,
     };
-    users[userIndex] = user;
-
+    users[userIndex] = {
+        ...user
+    };
     response.send(user);
 });
 
@@ -170,8 +171,9 @@ server.put('/products/:id', (request, response) => {
         price,
         year
     }
-    products[productIndex] = product;
-
+    products[productIndex] = {
+        ...product
+    };
     response.send(product)
 });
 
