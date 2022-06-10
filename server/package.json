@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "backend livrofacil webapp",
   "main": "./src/index.ts",
+  "type": "module",
   "scripts": {
-    "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules ./src/index.ts "
+    "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts "
   },
   "author": "Letícia, Murillo e Ruan",
   "license": "MIT",
