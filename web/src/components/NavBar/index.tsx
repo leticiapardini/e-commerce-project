@@ -1,12 +1,16 @@
-import React from 'react';
-import {  Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useState } from 'react';
+import {  Button, Container, Nav, Navbar } from 'react-bootstrap';
 // import Navbar from 'react-bootstrap/Navbar';
 import logo from '../logo/logo.png';
 import {  UserAddOutlined } from '@ant-design/icons';
 import { CartProduct } from '../Cart';
+import Formulario from '../Form';
+import { CadastreModal } from '../Modal';
+
 
 
 function NavBar() {
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -24,8 +28,8 @@ function NavBar() {
             <Nav>
               <Nav.Link href="#deets">
                 {' '}
-                <UserAddOutlined style={ { fontSize: '25px'}} />
-                Entre/Cadastre-se
+                <CadastreModal/>
+
               </Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
                 <CartProduct />
