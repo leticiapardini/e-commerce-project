@@ -2,8 +2,7 @@
   "name": "livrofacil",
   "version": "1.0.0",
   "description": "backend livrofacil webapp",
-  "main": "./src/index.ts",
-  "type": "module",
+  "main": "./src/index.ts",  
   "scripts": {
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts "
   },
