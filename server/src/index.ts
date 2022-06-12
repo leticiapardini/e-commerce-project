@@ -19,6 +19,7 @@ server.use(logMiddleware);
 
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
+
 type User = {
   id: string;
   name: string;
@@ -72,11 +73,13 @@ server.get('/users/:id', (request, response) => {
   const user = users.find((x) => x.id === id);
 
   if(!user) return response.status(404).send();
+
   return response.send(user);
 });
 
 //     cadastro
 server.post('/users', (request, response) => {
+
   try {
   const { name, email, password } = request.body as User;
 
@@ -141,7 +144,7 @@ server.post('/users', (request, response) => {
 
 //     edição
 server.put('/users/:id', (request, response) => {
-  
+ 
   try {
     const { id } = request.params;
     const { name, email, password } = request.body as User;
@@ -200,11 +203,13 @@ server.put('/users/:id', (request, response) => {
     ...user,
   };
   return response.send(user);
+
 } catch(err: any){
   return response.send({
     message: err.message
   });
 }
+
 });
 
 //      delete
