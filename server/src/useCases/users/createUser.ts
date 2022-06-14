@@ -7,6 +7,7 @@ import { emailPattern } from '../../utils/regex';
 
 export default class CreateUserUseCase {
   private _repository: UsersRepository;
+
   constructor(repository: UsersRepository) {
     this._repository = repository;
   }

@@ -3,13 +3,11 @@ import User from '../models/User';
 import UsersRepository from '../repositories/usersRepository';
 
 import UserDto from '../dtos/userDto';
-import FieldException from '../exceptions/fieldExceptions';
 import CreateUserUseCase from '../useCases/users/createUser';
+import DeleteUserUseCase from '../useCases/users/deleteUser';
 import GetUserUseCase from '../useCases/users/getUser';
 import ListUsersUseCase from '../useCases/users/listUsers';
 import UpdateUserUseCase from '../useCases/users/updateUser';
-import { genericExceptionMessage } from '../utils/constants';
-import DeleteUserUseCase from '../useCases/users/deleteUser';
 
 const userRoutes = Router();
 
@@ -46,39 +44,23 @@ userRoutes.get('/:id', (request, response) => {
 
 //     cadastro
 userRoutes.post('/', (request, response) => {
-  try {
-    const useCase = new CreateUserUseCase(repository);
-    const user = useCase.execute(request.body as UserDto);
-    return response.status(201).send(user);
-  } catch (err) {
-    if (err instanceof FieldException) return response.send(err.errors).status(err.statusCode);
-
-    return response.send({
-      message: genericExceptionMessage,
-    });
-  }
+  const useCase = new CreateUserUseCase(repository);
+  const user = useCase.execute(request.body as UserDto);
+  return response.status(201).send(user);
 });
 
 //     edição
 userRoutes.put('/:id', (request, response) => {
-  try {
-    const { id } = request.params;
-    const { name, email, password } = request.body as User;
-    const useCase = new UpdateUserUseCase(repository);
-    const user = useCase.execute({
-      id,
-      name,
-      email,
-      password,
-    });
-    return response.send(user);
-  } catch (err) {
-    if (err instanceof FieldException) return response.send(err.errors).status(err.statusCode);
-
-    return response.send({
-      message: genericExceptionMessage,
-    });
-  }
+  const { id } = request.params;
+  const { name, email, password } = request.body as User;
+  const useCase = new UpdateUserUseCase(repository);
+  const user = useCase.execute({
+    id,
+    name,
+    email,
+    password,
+  });
+  return response.send(user);
 });
 
 //      delete
