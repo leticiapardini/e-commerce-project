@@ -16,7 +16,7 @@ function App() {
       <NavBar></NavBar>
       <Carrousel></Carrousel>
       <BookCards></BookCards>
-      <Formulario/>
+
 
 
     </>

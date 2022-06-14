@@ -1,0 +1,5 @@
+.gridBooks {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 20px 5px;
+}

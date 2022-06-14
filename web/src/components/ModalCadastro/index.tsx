@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { FormCadastro } from '../FormCadastro';
+import '../Modal/styles.css';
 
 
 
@@ -12,7 +13,7 @@ const ModalCadastro = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className='buttonNotCadastre' variant="primary" onClick={handleShow}>
         Ainda não tem Cadastro? Clique aqui!
       </Button>
       <Modal show={show} onHide={handleClose}>

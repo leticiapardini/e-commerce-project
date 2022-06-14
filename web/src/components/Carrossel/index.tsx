@@ -7,7 +7,7 @@ import foto3 from '../logo/foto3.jpg'
 function Carrousel () {
   return (
 
-<Carousel>
+<Carousel style={{paddingBottom:'20px'}}>
   <Carousel.Item>
     <img
       className="d-block w-100"

@@ -5,6 +5,7 @@ import Formulario from '../Form';
 import { CartProduct } from '../Cart';
 import { Form } from 'react-bootstrap';
 import { UserAddOutlined } from '@ant-design/icons';
+import './styles.css'
 
 //Modal para o usuario entrar
 
@@ -16,7 +17,7 @@ function CadastreModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className='cadastreButton' variant="primary" onClick={handleShow}>
         <UserAddOutlined /> Entre/Cadastre-se
       </Button>
 
