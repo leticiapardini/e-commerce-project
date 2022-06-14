@@ -1,4 +1,5 @@
 import { v4 } from 'uuid';
+import ProductDto from '../dtos/productDto';
 
 export default class Product {
     id: string;
@@ -8,7 +9,7 @@ export default class Product {
     price: number;
     year: number;
 
-    constructor(title: string, author: string, publisher: string, price: number, year: number) {
+    constructor({title, author, publisher, price, year}: Omit<ProductDto, 'id'>) {
         this.id = v4();
         this.title = title;
         this.author = author;
