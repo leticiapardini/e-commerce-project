@@ -4,13 +4,13 @@ import FieldException from '../../exceptions/fieldExceptions';
 import Product from '../../models/Product';
 import ProductsRepository from '../../repositories/productsRepository';
 
-export default class CreateProductsUseCase {
+export default class UpdateProductsUseCase {
   private _repository: ProductsRepository;
   constructor(repository: ProductsRepository) {
     this._repository = repository;
   }
 
-  public execute({ title, author, publisher, price, year }: Omit<ProductDto, 'id'>) : Product {
+  public execute({ id, title, author, publisher, price, year }: ProductDto) : Product {
     const errors: FieldError[] = [];
 
     if (!title) {
@@ -46,8 +46,9 @@ export default class CreateProductsUseCase {
     }
 
     const product = new Product({ author, price, publisher, title, year });
+    product.id = id;
 
-    this._repository.add(product);
+    this._repository.update(product);
     return product;
   }
 }

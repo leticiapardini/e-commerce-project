@@ -3,9 +3,11 @@ import ProductDto from '../dtos/productDto';
 import Product from '../models/Product';
 import ProductsRepository from '../repositories/productsRepository';
 import CreateProductsUseCase from '../useCases/products/createProduct';
+import DeleteProductsUseCase from '../useCases/products/deleteProduct';
 import GetProductsUseCase from '../useCases/products/getProduct';
 
 import ListProductsUseCase from '../useCases/products/listProducts';
+import UpdateProductsUseCase from '../useCases/products/updateProduct';
 
 //todas as rotas de users
 const productsRoutes = Router();
@@ -24,7 +26,7 @@ const repository = new ProductsRepository();
  * year: number        *
  **********************/
 
-//     listagem
+//     LISTAGEM
 productsRoutes.get('/', (request, response) => {
   const useCase = new ListProductsUseCase(repository);
   const products = useCase.execute();
@@ -44,77 +46,33 @@ productsRoutes.get('/:id', (request, response) => {
 
 //     CADASTRO
 productsRoutes.post('/', (request, response) => {
-  try {
-    const useCase = new CreateProductsUseCase(repository);
-    useCase.execute(request.body as ProductDto);
+  const useCase = new CreateProductsUseCase(repository);
+  const product = useCase.execute(request.body as ProductDto);
 
-    const errors: ResponseError[] = [];
-
-    return response.status(201).send(product);
-  } catch (err: any) {
-    return response.send({
-      message: err.message,
-    });
-  }
+  return response.status(201).send(product);
 });
 
 //       EDIÇÃO
 productsRoutes.put('/:id', (request, response) => {
-  try {
-    const { id } = request.params;
-    const { title, author, publisher, price, year } = request.body as Product;
-
-    const errors: ResponseError[] = [];
-
-    if (!title) {
-      errors.push({
-        field: 'title',
-        message: 'Title is required!',
-      });
-    }
-
-    if (!author) {
-      errors.push({
-        field: 'author',
-        message: 'Author is required!',
-      });
-    }
-
-    if (!publisher) {
-      errors.push({
-        field: 'publisher',
-        message: 'Publisher is required!',
-      });
-    }
-
-    if (!price) {
-      errors.push({
-        field: 'price',
-        message: 'Price is required!',
-      });
-    }
-
-    if (errors.length > 0) {
-      return response.status(400).send(errors);
-    }
-
-    // const productIndex = products.findIndex((x) => x.id === id);
-    const product = new Product(title, author, publisher, price, year);
-    product.id = id;
-
-    repository.update(product);
-    return response.send(product);
-  } catch (err: any) {
-    return response.send({
-      message: err.message,
-    });
-  }
+  const { id } = request.params;
+  const { title, author, publisher, price, year } = request.body as Product;
+  const useCase = new UpdateProductsUseCase(repository);
+  const product = useCase.execute({
+    id,
+    title,
+    author,
+    publisher,
+    price,
+    year,
+  });
+  return response.send(product);
 });
 
 //      DELETE
 productsRoutes.delete('/:id', (request, response) => {
   const { id } = request.params;
-  repository.delete(id);
+  const useCase = new DeleteProductsUseCase(repository);
+  useCase.execute(id);
   return response.send({});
 });
 
