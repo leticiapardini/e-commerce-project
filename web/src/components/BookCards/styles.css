@@ -2,4 +2,42 @@
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 20px 5px;
+  background:rgba(32,178,170,0.6);
+  padding: 2rem;
 }
+
+.card {
+  width: 100%;
+  height:100%;
+  border-radius: 1rem;
+  border: 5px solid rgba(0,139,139);
+}
+.cardImg {
+  width: 100px;
+  height: 100px;
+  margin-left: 33%;
+}
+
+
+.buttonSaibaMais {
+  background: rgba(153,50,204);
+  margin-left: 15%;
+  color: #fff;
+  width: 10rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+
+}
+
+@media screen and (min-width: 1200px) {
+   .buttonSaibaMais{
+    width: 20rem;
+    margin-left: 15%;
+   }
+}
+
+
+.buttonSaibaMais:hover{
+  background-color: rgba(0,139,139);
+}
+

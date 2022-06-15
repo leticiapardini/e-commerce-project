@@ -13,7 +13,7 @@ const ModalCadastro = () => {
 
   return (
     <>
-      <Button className='buttonNotCadastre' variant="primary" onClick={handleShow}>
+      <Button className='buttonEntrar' variant="primary" onClick={handleShow}>
         Ainda não tem Cadastro? Clique aqui!
       </Button>
       <Modal show={show} onHide={handleClose}>

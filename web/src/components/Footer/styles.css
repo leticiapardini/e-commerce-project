@@ -1,0 +1,42 @@
+
+.footer {
+  height: 100%;
+  background-color: #2F4F4F;
+  color: #fff;
+  text-align: center;
+}
+
+.footer h3 {
+  color: rgba(224,255,255);
+  font-size: 1.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-top: 0.5rem;
+}
+
+.gridTemplate {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px 5px;
+}
+
+.icon {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.icon:hover {
+  font-size: 1.3rem;
+}
+
+.icon a {
+  color: rgba(153,50,204);
+  font-weight: bold;
+}
+
+.names p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: rgba(224,255,255);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

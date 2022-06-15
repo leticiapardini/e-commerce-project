@@ -18,7 +18,7 @@ function CadastreModal() {
   return (
     <>
       <Button className='cadastreButton' variant="primary" onClick={handleShow}>
-        <UserAddOutlined /> Entre/Cadastre-se
+        <UserAddOutlined style={{fontSize: '30px'}} /> Entre/Cadastre-se
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -31,7 +31,7 @@ function CadastreModal() {
           <Formulario/>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button className='buttonEntrar' variant="primary" onClick={handleClose}>
             Entrar
           </Button>
         </Modal.Footer>
