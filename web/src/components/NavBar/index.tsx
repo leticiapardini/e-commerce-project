@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import {  Button, Container, Nav, Navbar } from 'react-bootstrap';
+import React from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 // import Navbar from 'react-bootstrap/Navbar';
-import logo from '../logo/logo.png';
-import {  UserAddOutlined } from '@ant-design/icons';
+import logo from '../logo/logoFinal.png';
 import { CartProduct } from '../Cart';
-import Formulario from '../Form';
 import { CadastreModal } from '../Modal';
+import './styles.css'
 
 
 
@@ -13,17 +12,17 @@ function NavBar() {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" className="navbar navbar-light" style={{background:'#2F4F4F'}}>
         <Container>
           <Navbar.Brand href="#home">
             {' '}
-            <img alt="logo" height={100} width={100} src={logo} />
+            <img alt="logo" style={{height: '100%', width: '218px'}} src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Quem Somos</Nav.Link>
-              <Nav.Link href="#pricing">Contatos</Nav.Link>
+              <Nav.Link href="#features" style={{fontSize: '18px', color: '#fff'}}>Quem Somos</Nav.Link>
+              <Nav.Link href="#pricing" style={{fontSize: '18px', color: '#fff'}}>Contatos</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="#deets">

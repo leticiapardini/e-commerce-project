@@ -14,7 +14,7 @@ function CartProduct () {
   return (
     <>
       <Button onClick={handleShow} className="me-2">
-         <ShoppingCartOutlined  style={{ fontSize: '25px' }}/>
+         <ShoppingCartOutlined  style={{ fontSize: '30px' }}/>
       </Button>
        <Offcanvas placement='end' show={show} onHide={handleClose} >
         <Offcanvas.Header closeButton>

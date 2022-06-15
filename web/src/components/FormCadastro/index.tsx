@@ -27,7 +27,7 @@ const FormCadastro = () => {
       <Form.Label> Endereço </Form.Label>
       <Form.Control type="address" placeholder="Endereço" />
     </Form.Group>
-    <Button variant="primary" type="submit">
+    <Button className='buttonEntrar' variant="primary" type="submit">
       Salvar
     </Button>
   </Form>
