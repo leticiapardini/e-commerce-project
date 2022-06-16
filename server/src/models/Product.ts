@@ -1,20 +1,26 @@
-import { v4 } from 'uuid';
-import ProductDto from '../dtos/productDto';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity('products')
 export default class Product {
-    id: string;
-    title: string;
-    author: string;
-    publisher: string;
-    price: number;
-    year: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    constructor({title, author, publisher, price, year}: Omit<ProductDto, 'id'>) {
-        this.id = v4();
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.price = price;
-        this.year = year;
-    }
+  @Column({ length: 100, nullable: false })
+  title: string;
+
+  @Column({ length: 100, nullable: false })
+  author: string;
+
+  @Column({ length: 60, nullable: false })
+  publisher: string;
+
+  @Column("decimal", { precision: 5, scale: 2, nullable: false })
+  price: number;
+
+  @Column({ nullable: false  })
+  year: number;
+
+  @Column({nullable: true})
+  img: string;
 }
+

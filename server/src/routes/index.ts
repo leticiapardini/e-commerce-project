@@ -5,7 +5,7 @@ import userRoutes from './users.routes';
 // rotas da aplicação
 const routes = Router();
 routes.get('/', (request, response) => {
-    return response.send('Bem-vinde à Livro Fácil!')
+    return response.send('Bem-vinde à Lilás Livraria!')
 });
 
 //// rotas users

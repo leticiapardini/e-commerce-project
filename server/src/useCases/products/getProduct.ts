@@ -1,13 +1,14 @@
+import { Repository } from 'typeorm';
 import Product from '../../models/Product';
 import ProductsRepository from '../../repositories/productsRepository';
 
 export default class GetProductsUseCase {
-  private _repository: ProductsRepository;
-  constructor(repository: ProductsRepository) {
-    this._repository = repository;
+  private _repository: Repository<Product>;
+  constructor() {
+    this._repository = ProductsRepository;
   }
 
-  public execute(id: string) : Product | undefined {
-    return this._repository.getById(id)
+  public async execute(id: string): Promise<Product | null> {
+    return await this._repository.findOneBy({ id });
   }
 }

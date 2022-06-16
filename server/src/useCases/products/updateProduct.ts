@@ -1,3 +1,4 @@
+import { Repository } from 'typeorm';
 import FieldError from '../../dtos/fieldError';
 import ProductDto from '../../dtos/productDto';
 import FieldException from '../../exceptions/fieldExceptions';
@@ -5,12 +6,12 @@ import Product from '../../models/Product';
 import ProductsRepository from '../../repositories/productsRepository';
 
 export default class UpdateProductsUseCase {
-  private _repository: ProductsRepository;
-  constructor(repository: ProductsRepository) {
-    this._repository = repository;
+  private _repository: Repository<Product>;
+  constructor() {
+    this._repository = ProductsRepository;
   }
 
-  public execute({ id, title, author, publisher, price, year }: ProductDto) : Product {
+  public async execute({ id, title, author, publisher, price, year, img }: ProductDto): Promise<Product | null> {
     const errors: FieldError[] = [];
 
     if (!title) {
@@ -41,14 +42,29 @@ export default class UpdateProductsUseCase {
       });
     }
 
+    if (!img) {
+      errors.push({
+        field: 'img',
+        message: 'Image is required!',
+      });
+    }
+
     if (errors.length > 0) {
       throw new FieldException(errors);
     }
 
-    const product = new Product({ author, price, publisher, title, year });
-    product.id = id;
+    const product = await this._repository.findOneBy({
+      id,
+    });
+    if (!product) return null;
+    product.title = title;
+    product.author = author;
+    product.publisher = publisher;
+    product.price = price;
+    product.year = year;
+    product.img = img;
 
-    this._repository.update(product);
+    await this._repository.save(product);
     return product;
   }
 }

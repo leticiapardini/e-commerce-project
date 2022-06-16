@@ -1,18 +1,23 @@
+import { Repository } from 'typeorm';
 import FieldError from '../../dtos/fieldError';
 import UserDto from '../../dtos/userDto';
 import FieldException from '../../exceptions/fieldExceptions';
 import User from '../../models/User';
 import UsersRepository from '../../repositories/usersRepository';
 import { emailPattern } from '../../utils/regex';
+import { AppDataSource as dataSource } from '../../configs/dbConfig';
+import Role from '../../models/Role';
 
 export default class CreateUserUseCase {
-  private _repository: UsersRepository;
+  private _repository: Repository<User>;
+  private _rolesRepository: Repository<Role>;
 
-  constructor(repository: UsersRepository) {
-    this._repository = repository;
+  constructor() {
+    this._repository = UsersRepository;
+    this._rolesRepository = dataSource.getRepository(Role)
   }
 
-  public execute({ name, email, password }: Omit<UserDto, 'id'>): User {
+  public async execute({ name, email, password, roleId }: Omit<UserDto, 'id'>): Promise<User | null> {
     const errors: FieldError[] = [];
     if (!name) {
       errors.push({
@@ -35,8 +40,10 @@ export default class CreateUserUseCase {
       });
     }
 
-    const userByEmail = this._repository.get((x) => x.email.toLowerCase() === email.toLowerCase());
-    if (userByEmail) {
+    const countUserByEmail = await this._repository.count({
+      where: { email },
+    });
+    if (countUserByEmail) {
       errors.push({
         field: 'email',
         message: 'E-mail is already in use!',
@@ -54,12 +61,17 @@ export default class CreateUserUseCase {
       throw new FieldException(errors);
     }
 
-    const user = new User({
-      name,
-      email,
-      password,
-    });
-    this._repository.add(user);
+    const role = await this._rolesRepository.findOneBy({id: roleId})
+
+    if(!role) return null;
+
+    const user = new User();
+    user.name = name;
+    user.email = email;
+    user.password = password;
+    user.role = role;
+
+    await this._repository.save(user);
     return user;
   }
 }

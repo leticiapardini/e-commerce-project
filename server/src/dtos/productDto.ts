@@ -5,4 +5,5 @@ export default interface ProductDto {
   publisher: string;
   price: number;
   year: number;
+  img: string;
 }

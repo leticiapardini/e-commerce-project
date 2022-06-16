@@ -3,6 +3,9 @@ import express from 'express';
 import errorsMiddleware from './middlewares/errors';
 import logMiddleware from './middlewares/logs';
 import routes from './routes';
+import { AppDataSource } from './configs/dbConfig';
+
+AppDataSource.initialize().then().catch(err => console.log(err))
 
 const server = express();
 server.use(cors());
