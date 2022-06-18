@@ -1,5 +1,4 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import User from './User';
 
 @Entity('roles')
 export default class Role {
@@ -11,8 +10,4 @@ export default class Role {
     nullable: false,
   })
   name: string;
-
-  // Chave estrangeira
-  @OneToMany(() => User, (role) => role.role)
-  users: User[];
 }

@@ -6,4 +6,5 @@ export default interface ProductDto {
   price: number;
   year: number;
   img: string;
+  qty: number;
 }

@@ -12,7 +12,7 @@ export default class UpdateUserUseCase {
     this._repository = UsersRepository;
   }
 
-  public async execute({ id, name, email, password }: UserDto): Promise<User | null> {
+  public async execute({ id, name, email, password, roleId }: UserDto): Promise<User | null> {
     const errors: FieldError[] = [];
     if (!name) {
       errors.push({
@@ -68,7 +68,8 @@ export default class UpdateUserUseCase {
     user.name = name;
     user.email = email;
     user.password = password;
-
+    user.roleid = roleId;
+    
     await this._repository.save(user);
     return user;
   }

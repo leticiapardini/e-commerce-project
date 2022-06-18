@@ -11,7 +11,7 @@ export default class UpdateProductsUseCase {
     this._repository = ProductsRepository;
   }
 
-  public async execute({ id, title, author, publisher, price, year, img }: ProductDto): Promise<Product | null> {
+  public async execute({ id, title, author, publisher, price, year, img, qty }: ProductDto): Promise<Product | null> {
     const errors: FieldError[] = [];
 
     if (!title) {
@@ -49,6 +49,13 @@ export default class UpdateProductsUseCase {
       });
     }
 
+    if (!qty) {
+      errors.push({
+        field: 'quantity',
+        message: 'quantity is required',
+      });
+    }
+
     if (errors.length > 0) {
       throw new FieldException(errors);
     }
@@ -63,6 +70,7 @@ export default class UpdateProductsUseCase {
     product.price = price;
     product.year = year;
     product.img = img;
+    product.qty = qty;
 
     await this._repository.save(product);
     return product;

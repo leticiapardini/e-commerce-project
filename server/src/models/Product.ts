@@ -22,5 +22,8 @@ export default class Product {
 
   @Column({nullable: true})
   img: string;
+
+  @Column({nullable: true})
+  qty: number;
 }
 

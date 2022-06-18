@@ -23,6 +23,7 @@ const productsRoutes = Router();
  * price: number       *
  * year: number        *
  * img: string         *
+ * qty: number         *
  **********************/
 
 //     LISTAGEM
@@ -54,7 +55,7 @@ productsRoutes.post('/', async (request, response) => {
 //       EDIÇÃO
 productsRoutes.put('/:id', async (request, response) => {
   const { id } = request.params;
-  const { title, author, publisher, price, year, img } = request.body as Product;
+  const { title, author, publisher, price, year, img, qty} = request.body as Product;
   const useCase = new UpdateProductsUseCase();
   const product = await useCase.execute({
     id,
@@ -64,6 +65,7 @@ productsRoutes.put('/:id', async (request, response) => {
     price,
     year,
     img,
+    qty
   });
   return response.send(product);
 });
