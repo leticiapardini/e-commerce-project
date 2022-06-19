@@ -13,6 +13,11 @@ AppDataSource.initialize()
         adminRole.id = '5be3f402-0c14-4ece-90a1-121bebae2a00';
         adminRole.name = 'Administrator';
         context.manager.save(adminRole);
+
+        const regularUserRole = new Role();
+        regularUserRole.id = 'c3d868d3-93a3-4f17-a6ed-93b18695f1f2';
+        regularUserRole.name = 'Regular User';
+        context.manager.save(regularUserRole);
     })
 
 const server = express();
