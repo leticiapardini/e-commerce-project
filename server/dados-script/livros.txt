@@ -1,0 +1,36 @@
+Livro1:
+Introdução à Programação com Python, Nilo Ney Coutinho, Novatec, 56.98, 2019, livro1.jpg
+
+Livro2:
+Entendendo Algoritmos, Aditya Bhargava, Novatec, 46.98, 2017, livro2.jpg
+
+Livro3:
+JavaScript: O Guia Definitivo, David Flanagan, Bookman, 167.89, 2012, livro3.jpg
+
+Livro4:
+Código limpo: Habilidades práticas do Agile Software, Robert C. Martin, Alta Books, 75.49, 2009, livro4.jpg
+
+Livro5:
+Criando Microsserviços, Sam Newman, Novatec, 133.70, 2022, livro5.jpg
+
+Livro6:
+Aprendendo Node: Usando JavaScript no Servidor, Sherlley Powers, Novatec, 64.96, 2017, livro6.jpg
+
+Livro7:
+Refatoração: Aperfeiçoando o Design de Códigos Existentes, Martin Fowler, Novatec, 88.55, 2020, livro7.jpg
+
+Livro8:
+Engenharia de Confiabilidade do Google, Betsy Beyer, Novatec, 85.89, 2016, livro8.jpg
+
+Livro9:
+Pentest em Aplicações web, Daniel Moreno, Novatec, 56.70, 2017, livro9.jpg
+
+Livro10:
+Trabalho Eficaz com Código Legado, Michael C. Feathers, Bookman, 107.23, 2013, livro10.jpg
+
+Livro11:
+Desenvolvendo Websites com PHP, Juliano Niederaue, Novatec, 42.35, 2016, livro11.jpg
+
+Livro12:
+CSS3 o manual que faltava, David Sawyer, Alta Books, 99.48, 2015, livro12.jpg
+
