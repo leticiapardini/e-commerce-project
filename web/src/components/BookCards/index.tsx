@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, CardGroup } from 'react-bootstrap';
 import books from '../../integrations/api.json';
-import './styles.css'
+import './styles.css';
+import {Link} from 'react-router-dom';
+
 
 function BookCards() {
+
+  const [selectBooks, setSelectBooks] = useState<boolean>(false)
+
+  console.log(selectBooks)
+
   return (
   <div className='gridBooks'>
       {books.map(book => {
@@ -16,9 +23,12 @@ function BookCards() {
             <Card.Subtitle>{book.description}</Card.Subtitle>
             <Card.Text> R$:{book.price}</Card.Text>
           </Card.Body>
-          <Button className='buttonSaibaMais'>
+          <Link to={`/${book.id}`}>
+          <Button onClick={() => setSelectBooks(true)}
+          className='buttonSaibaMais'>
             Saiba mais
           </Button>
+        </Link>
         </Card>
     </CardGroup>)})}
   </div>
