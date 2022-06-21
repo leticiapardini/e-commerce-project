@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { NavBar } from '../NavBar';
 import { Carrousel } from '../Carrossel';
 import BookCards from '../BookCards';
 import Footer from '../Footer';
-import useBooks from '../../App'
+import useBooks from '../../App';
 
 const Home = () => {
-
-
   return (
     <>
       <NavBar></NavBar>
@@ -15,7 +13,7 @@ const Home = () => {
       <BookCards></BookCards>
       <Footer></Footer>
     </>
-  )
-}
+  );
+};
 
-export {Home};
+export { Home };

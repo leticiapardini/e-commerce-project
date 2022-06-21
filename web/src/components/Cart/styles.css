@@ -1,5 +1,6 @@
-
-.me-2, btn, btn-primary {
+.me-2,
+btn,
+btn-primary {
   border: none;
   background: transparent;
   display: flex;
@@ -7,27 +8,26 @@
   transition: transform 0.6s ease-in-out;
 }
 
- .me-2:hover {
-  background-color: rgba(0,139,139);
- }
+.me-2:hover {
+  background-color: rgba(0, 139, 139);
+}
 
 .btn-primary:focus {
   color: aliceblue;
-  background-color:transparent;
-
+  background-color: transparent;
 }
 
-.btn-check:focus+{
-  border-color:transparent;
+.btn-check:focus + {
+  border-color: transparent;
 }
 
-.btn-primary{
-  border-color:transparent;
+.btn-primary {
+  border-color: transparent;
 }
 .btn:focus {
   box-shadow: 0 0 0 0;
 }
 
 .btn:hover {
-  background-color: rgba(0,139,139);
+  background-color: rgba(0, 139, 139);
 }

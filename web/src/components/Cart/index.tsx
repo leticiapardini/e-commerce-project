@@ -2,10 +2,9 @@
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { Button, Offcanvas } from 'react-bootstrap';
-import './styles.css'
+import './styles.css';
 
-
-function CartProduct () {
+function CartProduct() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,19 +13,19 @@ function CartProduct () {
   return (
     <>
       <Button onClick={handleShow} className="me-2">
-         <ShoppingCartOutlined  style={{ fontSize: '30px' }}/>
+        <ShoppingCartOutlined style={{ fontSize: '30px' }} />
       </Button>
-       <Offcanvas placement='end' show={show} onHide={handleClose} >
+      <Offcanvas placement="end" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
+          etc.
         </Offcanvas.Body>
       </Offcanvas>
     </>
-  )
+  );
 }
 
-export {CartProduct}
+export { CartProduct };

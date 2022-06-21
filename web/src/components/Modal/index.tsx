@@ -1,11 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import Formulario from '../Form';
 import { CartProduct } from '../Cart';
 import { Form } from 'react-bootstrap';
 import { UserAddOutlined } from '@ant-design/icons';
-import './styles.css'
+import './styles.css';
 
 //Modal para o usuario entrar
 
@@ -17,21 +17,19 @@ function CadastreModal() {
 
   return (
     <>
-      <Button className='cadastreButton' variant="primary" onClick={handleShow}>
-        <UserAddOutlined style={{fontSize: '30px'}} /> Entre/Cadastre-se
+      <Button className="cadastreButton" variant="primary" onClick={handleShow}>
+        <UserAddOutlined style={{ fontSize: '30px' }} /> Entre/Cadastre-se
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>
-            Faça seu login
-          </Modal.Title>
+          <Modal.Title>Faça seu login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Formulario/>
+          <Formulario />
         </Modal.Body>
         <Modal.Footer>
-          <Button className='buttonEntrar' variant="primary" onClick={handleClose}>
+          <Button className="buttonEntrar" variant="primary" onClick={handleClose}>
             Entrar
           </Button>
         </Modal.Footer>
@@ -40,4 +38,4 @@ function CadastreModal() {
   );
 }
 
-export { CadastreModal }
+export { CadastreModal };

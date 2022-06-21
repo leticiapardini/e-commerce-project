@@ -1,24 +1,23 @@
-import {createContext} from 'react'
+import { createContext } from 'react';
 interface defaultvalue {
-    statBook: {
-      id: number
-    },
-    setstatBook: () => number | null
-
+  statBook: {
+    id: number;
+  };
+  setstatBook: () => number | null;
 }
 export interface defaultContext {
- books: defaultvalue[]
+  books: defaultvalue[];
 }
 
+const ListBookContext = createContext<defaultContext>({
+  books: [
+    {
+      setstatBook: () => null,
+      statBook: {
+        id: 0,
+      },
+    },
+  ],
+});
 
-
- const ListBookContext = createContext<defaultContext>({
-  books: [{
-    setstatBook: () => null,
-    statBook: {
-      id: 0
-    }
-  }]
- });
-
- export {ListBookContext}
+export { ListBookContext };
