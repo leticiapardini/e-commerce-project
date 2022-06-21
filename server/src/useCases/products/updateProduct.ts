@@ -5,13 +5,13 @@ import FieldException from '../../exceptions/fieldExceptions';
 import Product from '../../models/Product';
 import ProductsRepository from '../../repositories/productsRepository';
 
-export default class CreateProductsUseCase {
+export default class UpdateProductsUseCase {
   private _repository: Repository<Product>;
   constructor() {
     this._repository = ProductsRepository;
   }
 
-  public async execute({ title, author, publisher, price, year, img, qty }: Omit<ProductDto, 'id'>): Promise<Product> {
+  public async execute({ id, title, author, publisher, price, year, img, qty }: ProductDto): Promise<Product | null> {
     const errors: FieldError[] = [];
 
     if (!title) {
@@ -60,7 +60,10 @@ export default class CreateProductsUseCase {
       throw new FieldException(errors);
     }
 
-    const product = new Product();
+    const product = await this._repository.findOneBy({
+      id,
+    });
+    if (!product) return null;
     product.title = title;
     product.author = author;
     product.publisher = publisher;
