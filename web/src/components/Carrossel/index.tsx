@@ -1,38 +1,24 @@
 /* eslint-disable react/react-in-jsx-scope */
-import  Carousel  from 'react-bootstrap/Carousel'
-import foto1 from '../logo/foto1.jpg'
-import foto2 from '../logo/foto2.jpg'
-import foto3 from '../logo/foto3.jpg'
+import Carousel from 'react-bootstrap/Carousel';
+import foto1 from '../logo/foto1.jpg';
+import foto2 from '../logo/foto2.jpg';
+import capa from '../logo/capa.png';
+import './styles.css';
 
-function Carrousel () {
+function Carrousel() {
   return (
-
-<Carousel>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={foto1}
-      alt="First slide"
-      style={{width: '100%', height:'25rem' }}
-    />
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={foto2}
-      alt="Second slide"
-      style={{width: '100%', height:'25rem' }}
-    />
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={foto3}
-      alt="Third slide"
-      style={{width: '100%', height:'25rem' }}
-    />
-  </Carousel.Item>
-</Carousel>)
+    <Carousel className="carousel">
+      <Carousel.Item>
+        <img className="d-block " src={capa} alt="First slide" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img className="d-block" src={foto1} alt="Second slide" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img className="d-block" src={foto2} alt="Third slide" />
+      </Carousel.Item>
+    </Carousel>
+  );
 }
 
 export { Carrousel };

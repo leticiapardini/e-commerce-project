@@ -1,52 +1,36 @@
-import React from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Card, CardGroup } from 'react-bootstrap';
+import books from '../../integrations/api.json';
+import './styles.css';
+import { Link } from 'react-router-dom';
 
 function BookCards() {
+  const [selectBooks, setSelectBooks] = useState<boolean>(false);
+
+  console.log(selectBooks);
+
   return (
-    <Container>
-    <Row xs={3} md={2} className="g-4">
-    <Col md={3} style={{padding: '2rem'}}>
-      <Card>
-        <Card.Img src="https://livrariascuritiba.vteximg.com.br/arquivos/ids/1861080-525-525/lv448086_1.jpg?v=636915786663200000" />
-        <Card.Body>
-          <Card.Title>Livro Titulo</Card.Title>
-          <Card.Subtitle>Livro Subtitulo</Card.Subtitle>
-          <Card.Text>Livro Texto</Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-    <Col md={3} style={{padding: '2rem'}}>
-      <Card>
-        <Card.Img src="https://livrariascuritiba.vteximg.com.br/arquivos/ids/1861080-525-525/lv448086_1.jpg?v=636915786663200000" />
-        <Card.Body>
-          <Card.Title>Livro Titulo</Card.Title>
-          <Card.Subtitle>Livro Subtitulo</Card.Subtitle>
-          <Card.Text>Livro Texto</Card.Text>
-        </Card.Body>
-      </Card>
-      </Col>
-      <Col md={3} style={{padding: '2rem'}}>
-      <Card>
-        <Card.Img src="https://livrariascuritiba.vteximg.com.br/arquivos/ids/1861080-525-525/lv448086_1.jpg?v=636915786663200000" />
-        <Card.Body>
-          <Card.Title>Livro Titulo</Card.Title>
-          <Card.Subtitle>Livro Subtitulo</Card.Subtitle>
-          <Card.Text>Livro Texto</Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-    <Col md={3} style={{padding: '2rem'}}>
-      <Card>
-        <Card.Img src="https://livrariascuritiba.vteximg.com.br/arquivos/ids/1861080-525-525/lv448086_1.jpg?v=636915786663200000" />
-        <Card.Body>
-          <Card.Title>Livro Titulo</Card.Title>
-          <Card.Subtitle>Livro Subtitulo</Card.Subtitle>
-          <Card.Text>Livro Texto</Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-    </Row>
-    </Container>
+    <div className="gridBooks">
+      {books.map((book) => {
+        return (
+          <CardGroup key={book.id}>
+            <Card className="card">
+              <Card.Img src={book.image} className="cardImg" />
+              <Card.Body>
+                <Card.Title>{book.title}</Card.Title>
+                <Card.Subtitle>{book.description}</Card.Subtitle>
+                <Card.Text> R$:{book.price}</Card.Text>
+              </Card.Body>
+              <Link to={`/${book.id}`}>
+                <Button onClick={() => setSelectBooks(true)} className="buttonSaibaMais">
+                  Saiba mais
+                </Button>
+              </Link>
+            </Card>
+          </CardGroup>
+        );
+      })}
+    </div>
   );
 }
 

@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
-import { NavBar } from './components/NavBar';
-import BookCards from './components/BookCards';
-import { Carrousel } from './components/Carrossel';
-
+import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import { Home } from './components/Pages/home';
+import { QuemSomos } from './components/Pages/quemSomos';
+import { Contatos } from './components/Pages/contatos';
+import { Products } from './components/Pages/products';
 
 function App() {
-
+  const { id } = useParams();
 
   return (
-    <>
-      <NavBar></NavBar>
-      <Carrousel></Carrousel>
-      <BookCards></BookCards>
-
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/quemSomos" element={<QuemSomos />} />
+        <Route path="/contatos" element={<Contatos />} />
+        <Route path="/:id" element={<Products />} />
+      </Routes>
+    </Router>
   );
 }
 
