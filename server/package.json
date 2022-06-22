@@ -5,7 +5,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev:server": "node envs/set.cjs dev && ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/server.ts ",
-    "typeorm": "typeorm-ts-node-esm -d ./src/configs/dbConfig.ts",
+    "typeorm": "typeorm-ts-node-esm -d ./src/db/context.ts",
     "migration:generate": "npm run typeorm migration:generate",
     "migration:create": "npm run typeorm migration:create",
     "migration:run": "npm run typeorm migration:run",
