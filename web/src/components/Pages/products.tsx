@@ -33,9 +33,6 @@ const Products = () => {
     return id === book.id.toString()
 })
 
-
-
-
 const stringBook:string = JSON.stringify(arrayBook)
 const local = localStorage.setItem('LC__cart', stringBook)
 
