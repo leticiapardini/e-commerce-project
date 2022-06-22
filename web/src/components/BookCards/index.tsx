@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 function BookCards() {
   const [selectBooks, setSelectBooks] = useState<boolean>(false);
 
-  console.log(selectBooks);
-
   return (
     <div className="gridBooks">
       {books.map((book) => {
@@ -19,7 +17,7 @@ function BookCards() {
               <Card.Body>
                 <Card.Title>{book.title}</Card.Title>
                 <Card.Subtitle>{book.description}</Card.Subtitle>
-                <Card.Text> R$:{book.price}</Card.Text>
+                <Card.Text> R${book.price}</Card.Text>
               </Card.Body>
               <Link to={`/${book.id}`}>
                 <Button onClick={() => setSelectBooks(true)} className="buttonSaibaMais">

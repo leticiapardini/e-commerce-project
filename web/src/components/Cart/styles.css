@@ -7,7 +7,6 @@ btn-primary {
   align-items: center;
   transition: transform 0.6s ease-in-out;
 }
-
 .me-2:hover {
   background-color: rgba(0, 139, 139);
 }
@@ -16,47 +15,42 @@ btn-primary {
   color: aliceblue;
   background-color: transparent;
 }
-
 .btn-check:focus + {
   border-color: transparent;
 }
-
 .btn-primary {
   border-color: transparent;
 }
 .btn:focus {
   box-shadow: 0 0 0 0;
 }
-
 .btn:hover {
   background-color: rgba(0, 139, 139);
 }
 
 .container-carrinho {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  background:#fff;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fff;
   align-items: center;
   justify-content: center;
   color: black;
 }
 
-.cardImg-2 {
+/* .cardImg-2 {
 
-}
+} */
 
 .card-title {
   font-size: 15px;
 }
 
-.card-qty{
-    width: 75%;
-    border-radius: 5px;
-
+.card-qty {
+  width: 75%;
+  border-radius: 5px;
 }
 
-.buttonExcluir{
-
+.buttonExcluir {
   height: 10%;
   align-items: center;
   padding-bottom: 30%;
@@ -67,19 +61,18 @@ btn-primary {
 }
 
 .buttonFinalizar {
-  background: rgba(153,50,204);
+  background: rgba(153, 50, 204);
   font-weight: bold;
   color: black;
   width: 100%;
   margin-top: 10%;
-
 }
 
-.total{
+/* .total{
 
-}
+} */
 
 .offcanvas-body {
-  background-color: rgba(47,79,79,0.8);
-  color: #fff
+  background-color: rgba(47, 79, 79, 0.8);
+  color: #fff;
 }

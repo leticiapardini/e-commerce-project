@@ -1,17 +1,16 @@
-import {createContext} from 'react';
-
+import { createContext } from 'react';
 
 export interface defaultContext {
-    show: boolean;
-    handleClose: () => void;
-    handleShow: () => void;
-    children?: React.ReactNode;
+  show: boolean;
+  handleClose: () => void;
+  handleShow: () => void;
+  children?: React.ReactNode;
 }
 
- const CartContext = createContext<defaultContext>({
+const CartContext = createContext<defaultContext>({
   show: false,
   handleShow: () => true,
   handleClose: () => false,
- });
+});
 
- export {CartContext}
+export { CartContext };

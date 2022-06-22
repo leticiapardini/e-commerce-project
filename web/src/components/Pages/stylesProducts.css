@@ -12,7 +12,6 @@
   margin-bottom: 1.5rem;
   border-radius: 0.5rem;
   margin-top: 15px;
-
 }
 
 .btn-check:focus+{
@@ -29,10 +28,10 @@
 .btn:hover{
   background-color: rgba(0,139,139);
 }
+
 .btn-primary:focus {
   color: black;
   background-color:transparent;
-
 }
 
 .container-products {
