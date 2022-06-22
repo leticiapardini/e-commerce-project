@@ -1,10 +1,12 @@
-import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from 'react';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 // import Navbar from 'react-bootstrap/Navbar';
 import logo from '../logo/logoFinal.png';
 import { CartProduct } from '../Cart';
 import { CadastreModal } from '../Modal';
 import './styles.css';
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
@@ -34,6 +36,11 @@ function NavBar() {
               <Nav.Link>
                 <CartProduct />
               </Nav.Link>
+              <Link to={'/cart'}>
+              <Button className="me-2">
+                  <ShoppingCartOutlined style={{ fontSize: '30px' }} />
+              </Button>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -1,7 +1,15 @@
 import React from 'react';
+import yup from 'yup';
 import { Button, Form } from 'react-bootstrap';
 
 // Formulario de cadastro
+
+const shema = yup.object().shape({
+  email: yup.string().email('Formato do e-mail não é valido').required('O e-mail é obrigatório'),
+  password: yup.string().min(6, 'Senha de no mínimo 6 caracteries').required('A senha é obrigatória'),
+  name: yup.string().required('Nome Obrigatório'),
+  sobrenome: yup.string().required('Sobrenome Obrigatório'),
+});
 
 const FormCadastro = () => {
   return (

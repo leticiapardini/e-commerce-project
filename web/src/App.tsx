@@ -6,6 +6,10 @@ import { Home } from './components/Pages/home';
 import { QuemSomos } from './components/Pages/quemSomos';
 import { Contatos } from './components/Pages/contatos';
 import { Products } from './components/Pages/products';
+import books from './integrations/api.json';
+import { CartContext } from './components/contexts/CartContext';
+import Checkout from '../src/components/Pages/telaPagamento/tela3';
+import { CartProduct } from './components/Cart';
 
 function App() {
   const { id } = useParams();
