@@ -1,30 +1,48 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { useState } from 'react';
-import { Button, Offcanvas } from 'react-bootstrap';
+import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import React from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Button, Card, Offcanvas, CardGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { AddCartContext } from '../contexts/AddCartContext';
+import { CartContext } from '../contexts/CartContext';
+import Footer from '../Footer';
+import { NavBar } from '../NavBar';
 import './styles.css';
 
 function CartProduct() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { conteudoCarrinho, Books, setConteudoCarrinho } = useContext(AddCartContext);
+  const { handleClose, handleShow, show } = useContext(CartContext);
+  const [finalizarCompra, setFinalizarCompra] = useState(false);
+  console.log(Books);
 
   return (
-    <>
-      <Button onClick={handleShow} className="me-2">
-        <ShoppingCartOutlined style={{ fontSize: '30px' }} />
-      </Button>
-      <Offcanvas placement="end" show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
-          etc.
-        </Offcanvas.Body>
-      </Offcanvas>
-    </>
+    <React.Fragment>
+      <>
+        {conteudoCarrinho?.length === 0 ? (
+          'Não encontramos Nada'
+        ) : (
+          <>
+            {conteudoCarrinho?.map((products) => {
+              <>
+                <NavBar />
+                <div className="container-products">
+                  <Card className="card-2">
+                    <Card.Body>
+                      <Card.Img className="cardImg" src={products.image}></Card.Img>
+                      <Card.Title>{products.title}</Card.Title>
+                      <Card.Subtitle>{products.description}</Card.Subtitle>
+                      <Card.Text>RS {products.price}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+                <Footer></Footer>
+              </>;
+            })}
+          </>
+        )}
+      </>
+    </React.Fragment>
   );
 }
 
