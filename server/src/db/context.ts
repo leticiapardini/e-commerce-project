@@ -3,8 +3,9 @@ import Product from '../models/Product';
 import Role from '../models/Role';
 import User from '../models/User';
 import DbConfig from '../configs/db.config';
+import 'dotenv/config';
 
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
   type: 'postgres',
   host: DbConfig.host,
   port: DbConfig.port,
@@ -18,3 +19,5 @@ export const AppDataSource = new DataSource({
   migrations: ['./src/migrations/*.ts'],
   migrationsTableName: 'migrations',
 });
+
+export default AppDataSource;

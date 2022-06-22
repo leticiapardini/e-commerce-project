@@ -13,12 +13,12 @@ routes.get('/', (request, response) => {
 //// rota de autenticação
 routes.use('/auth', AuthRoutes);
 
+//// rotas produtos
+routes.use('/products', productsRoutes);
 
 /// rotas autenticadas
 //// rotas users
 routes.use('/users', userRoutes);
 
-//// rotas produtos
-routes.use('/products', productsRoutes);
 
 export default routes;

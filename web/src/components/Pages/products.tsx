@@ -49,6 +49,12 @@ const Products = () => {
     }
   }, []);
 
+  const componentDidMount = () => {
+    axios.get("/products").then(function(response) {
+    console.log(response.data)
+    })
+  }
+
   return (
     <React.Fragment>
       <AddCartContext.Provider
