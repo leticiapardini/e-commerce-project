@@ -30,11 +30,6 @@ function CadastreModal() {
         <Modal.Body>
           <Formulario/>
         </Modal.Body>
-        <Modal.Footer>
-          <Button className='buttonEntrar' variant="primary" onClick={handleClose}>
-            Entrar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

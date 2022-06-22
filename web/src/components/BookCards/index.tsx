@@ -9,8 +9,6 @@ function BookCards() {
 
   const [selectBooks, setSelectBooks] = useState<boolean>(false)
 
-  console.log(selectBooks)
-
   return (
   <div className='gridBooks'>
       {books.map(book => {

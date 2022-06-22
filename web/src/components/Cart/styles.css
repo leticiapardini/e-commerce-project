@@ -31,3 +31,55 @@
 .btn:hover {
   background-color: rgba(0,139,139);
 }
+
+.container-carrinho {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  background:#fff;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.cardImg-2 {
+
+}
+
+.card-title {
+  font-size: 15px;
+}
+
+.card-qty{
+    width: 75%;
+    border-radius: 5px;
+
+}
+
+.buttonExcluir{
+
+  height: 10%;
+  align-items: center;
+  padding-bottom: 30%;
+  width: 40%;
+  background: #fff;
+  color: red;
+  font-weight: bold;
+}
+
+.buttonFinalizar {
+  background: rgba(153,50,204);
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  margin-top: 10%;
+
+}
+
+.total{
+
+}
+
+.offcanvas-body {
+  background-color: rgba(47,79,79,0.8);
+  color: #fff
+}

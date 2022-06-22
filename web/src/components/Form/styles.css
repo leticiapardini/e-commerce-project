@@ -1,0 +1,8 @@
+input.input-error,
+select.input-error {
+  border: 2px solid red;
+}
+
+#buttonSubmit:disabled {
+  opacity: 0.35;
+}
