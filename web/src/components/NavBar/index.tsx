@@ -5,34 +5,10 @@ import logo from '../logo/logoFinal.png';
 import { CartProduct } from '../Cart';
 import { CadastreModal } from '../Modal';
 import './styles.css';
-import { Link } from 'react-router-dom';
-import '../Cart/styles.css';
-import { AddCartContext } from '../contexts/AddCartContext';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
-  const { conteudoCarrinho, setConteudoCarrinho } = useContext(AddCartContext);
-  const [openNavLink, setOpenNavLink] = useState(false);
-
-  const open = () => {
-    setOpenNavLink(true);
-  };
-
-  useEffect(
-    () => {
-      const infoLocalStorage =  localStorage.getItem('LC__cart')
-      if(!infoLocalStorage) {return
-      }else{
-       const parseInfoLocalStorage = JSON.parse(infoLocalStorage)
-       setConteudoCarrinho?.(parseInfoLocalStorage)
-       console.log(parseInfoLocalStorage)
-    }
-    },[]
-  )
-
-  console.log('esse é do nav', conteudoCarrinho)
-
-
   return (
     <>
       <Navbar collapseOnSelect expand="lg" className="navbar navbar-light" style={{ background: '#2F4F4F' }}>
@@ -43,27 +19,22 @@ function NavBar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link to={'/'}>
-                <Button onClick={open} className="me-2">
-                  Home
-                </Button>
-              </Link>
-              <Link to="/quemSomos">
-                <Button onClick={open} className="me-2">
-                  Quem Somos
-                </Button>
-              </Link>
-              <Link to="/contatos">
-                <Button onClick={open} className="me-2">
-                  Contatos
-                </Button>
-              </Link>
+              <Nav.Link href="/" style={{ fontSize: '18px', color: '#fff' }}>
+                Home
+              </Nav.Link>
+              <Nav.Link href="/quemSomos" style={{ fontSize: '18px', color: '#fff' }}>
+                Quem Somos
+              </Nav.Link>
+              <Nav.Link href="/contatos" style={{ fontSize: '18px', color: '#fff' }}>
+                Contatos
+              </Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link>
-              <Button onClick={open} className="me-2">
-                  <CadastreModal />
-              </Button>
+                <CadastreModal />
+              </Nav.Link>
+              <Nav.Link>
+                <CartProduct />
               </Nav.Link>
               <Link to={'/cart'}>
               <Button className="me-2">

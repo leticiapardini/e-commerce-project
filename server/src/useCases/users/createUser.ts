@@ -1,3 +1,5 @@
+import { Repository } from 'typeorm';
+import { hash } from 'bcrypt';
 import FieldError from '../../dtos/fieldError';
 import UserDto from '../../dtos/userDto';
 import FieldException from '../../exceptions/fieldExceptions';
@@ -6,13 +8,13 @@ import UsersRepository from '../../repositories/usersRepository';
 import { emailPattern } from '../../utils/regex';
 
 export default class CreateUserUseCase {
-  private _repository: UsersRepository;
+  private _repository: Repository<User>;
 
-  constructor(repository: UsersRepository) {
-    this._repository = repository;
+  constructor() {
+    this._repository = UsersRepository;
   }
 
-  public execute({ name, email, password }: Omit<UserDto, 'id'>): User {
+  public async execute({ name, email, password, roleId }: Omit<UserDto, 'id'>): Promise<User | null> {
     const errors: FieldError[] = [];
     if (!name) {
       errors.push({
@@ -35,8 +37,11 @@ export default class CreateUserUseCase {
       });
     }
 
-    const userByEmail = this._repository.get((x) => x.email.toLowerCase() === email.toLowerCase());
-    if (userByEmail) {
+    const countUserByEmail = await this._repository.count({
+      where: { email },
+    });
+
+    if (countUserByEmail) {
       errors.push({
         field: 'email',
         message: 'E-mail is already in use!',
@@ -54,12 +59,15 @@ export default class CreateUserUseCase {
       throw new FieldException(errors);
     }
 
-    const user = new User({
-      name,
-      email,
-      password,
-    });
-    this._repository.add(user);
+    const encryptedPassword = await hash(password, 8)
+
+    const user = new User();
+    user.name = name;
+    user.email = email;
+    user.password = encryptedPassword;
+    user.roleid = roleId;
+
+    await this._repository.save(user);
     return user;
   }
 }

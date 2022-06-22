@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 import Footer from '../Footer';
 import { NavBar } from '../NavBar';
 
 const QuemSomos = () => {
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div>
         <p> Escrever quem somos</p>
       </div>
-      <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export {QuemSomos};
+export { QuemSomos };

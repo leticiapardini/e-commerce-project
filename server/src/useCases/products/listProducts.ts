@@ -1,13 +1,14 @@
+import { Repository } from 'typeorm';
 import Product from '../../models/Product';
 import ProductsRepository from '../../repositories/productsRepository';
 
 export default class ListProductsUseCase {
-  private _repository: ProductsRepository;
-  constructor(repository: ProductsRepository) {
-    this._repository = repository;
+  private _repository: Repository<Product>;
+  constructor() {
+    this._repository = ProductsRepository;
   }
 
-  public execute() : Product[] {
-    return this._repository.list()
+  public async execute() : Promise<Product[]> {
+    return await this._repository.find()
   }
 }

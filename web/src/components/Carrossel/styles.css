@@ -5,14 +5,13 @@
   margin-top: 1.5rem;
 }
 
-
 .carousel {
-  padding:'20px';
-  background:rgba(32,178,170, 0.6);
+  padding: '20px';
+  background: rgba(32, 178, 170, 0.6);
 }
 
 @media screen and (min-width: 1200px) {
-  .d-block{
+  .d-block {
     width: 85rem;
     height: 28rem;
     border-radius: 1rem;
