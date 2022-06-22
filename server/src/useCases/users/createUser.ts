@@ -1,4 +1,5 @@
 import { Repository } from 'typeorm';
+import { hash } from 'bcrypt';
 import FieldError from '../../dtos/fieldError';
 import UserDto from '../../dtos/userDto';
 import FieldException from '../../exceptions/fieldExceptions';
@@ -39,6 +40,7 @@ export default class CreateUserUseCase {
     const countUserByEmail = await this._repository.count({
       where: { email },
     });
+
     if (countUserByEmail) {
       errors.push({
         field: 'email',
@@ -57,10 +59,12 @@ export default class CreateUserUseCase {
       throw new FieldException(errors);
     }
 
+    const encryptedPassword = await hash(password, 8)
+
     const user = new User();
     user.name = name;
     user.email = email;
-    user.password = password;
+    user.password = encryptedPassword;
     user.roleid = roleId;
 
     await this._repository.save(user);

@@ -1,6 +1,7 @@
 import { sign } from 'jsonwebtoken';
+import { compare } from 'bcrypt';
 import { Repository } from 'typeorm';
-import { JwtAssignKey } from '../../configs/auth.config';
+import { JwtSignKey } from '../../configs/auth.config';
 import AuthDto from '../../dtos/authDto';
 import User from '../../models/User';
 import UsersRepository from '../../repositories/usersRepository';
@@ -30,15 +31,19 @@ export default class AuthUserUseCase {
       },
     });
 
-    if (!user) throw new Error(errorMessage);
+    if (!user) {
+      throw new Error(errorMessage);
+    }
 
     // validar a senha
-    const isValid = user.password === password;
+    const isValid = await compare(password, user.password);
 
-    if (!isValid) throw new Error(errorMessage);
+    if (!isValid) {
+      throw new Error(errorMessage);
+    }
 
     // gerar o JWT
-    const jwt = sign({ id: user.id, role: user.role}, JwtAssignKey);
+    const jwt = sign({ role: user.role }, JwtSignKey, { subject: user.id });
 
     delete user.password;
 

@@ -12,7 +12,7 @@ export default class UpdateUserUseCase {
     this._repository = UsersRepository;
   }
 
-  public async execute({ id, name, email, password, roleId }: UserDto): Promise<User | null> {
+  public async execute({ id, name, email, roleId }: Omit<UserDto, 'password'>): Promise<User | null> {
     const errors: FieldError[] = [];
     if (!name) {
       errors.push({
@@ -34,7 +34,7 @@ export default class UpdateUserUseCase {
         message: 'E-mail is invalid!',
       });
     }
-    
+
     const countUsersByEmail = await this._repository.count({
       where: {
         id: Not(id),
@@ -48,28 +48,20 @@ export default class UpdateUserUseCase {
       });
     }
 
-    if (!password) {
-      errors.push({
-        field: 'password',
-        message: 'Password is required!',
-      });
-    }
-
     if (errors.length > 0) {
       throw new FieldException(errors);
     }
 
     const user = await this._repository.findOneBy({
-      id
+      id,
     });
 
-    if(!user) return null;
+    if (!user) return null;
 
     user.name = name;
     user.email = email;
-    user.password = password;
     user.roleid = roleId;
-    
+
     await this._repository.save(user);
     return user;
   }

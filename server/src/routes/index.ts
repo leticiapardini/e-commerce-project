@@ -1,4 +1,4 @@
-import 'express-async-errors';
+
 import { Router } from 'express';
 import AuthRoutes from './auth.routes';
 import productsRoutes from './produtcs.routes';
@@ -13,12 +13,12 @@ routes.get('/', (request, response) => {
 //// rota de autenticação
 routes.use('/auth', AuthRoutes);
 
+
+/// rotas autenticadas
 //// rotas users
 routes.use('/users', userRoutes);
 
 //// rotas produtos
 routes.use('/products', productsRoutes);
-
-
 
 export default routes;
