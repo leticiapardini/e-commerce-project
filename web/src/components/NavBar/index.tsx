@@ -7,29 +7,16 @@ import { CadastreModal } from '../Modal';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import '../Cart/styles.css';
-import { AddCartContext } from '../contexts/AddCartContext';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 
 function NavBar() {
-  const { conteudoCarrinho, setConteudoCarrinho } = useContext(AddCartContext);
+
   const [openNavLink, setOpenNavLink] = useState(false);
 
   const open = () => {
     setOpenNavLink(true);
   };
 
-  useEffect(() => {
-    const infoLocalStorage = localStorage.getItem('LC__cart');
-    if (!infoLocalStorage) {
-      return;
-    } else {
-      const parseInfoLocalStorage = JSON.parse(infoLocalStorage);
-      setConteudoCarrinho?.(parseInfoLocalStorage);
-      console.log(parseInfoLocalStorage);
-    }
-  }, []);
-
-  console.log('esse é do nav', conteudoCarrinho);
 
   return (
     <>
@@ -63,11 +50,11 @@ function NavBar() {
                   <CadastreModal />
                 </Button>
               </Nav.Link>
-              <Link to={'/cart'}>
-                <Button className="me-2">
-                  <ShoppingCartOutlined style={{ fontSize: '30px' }} />
+              <Nav.Link>
+                <Button onClick={open} className="me-2">
+                  <CartProduct />
                 </Button>
-              </Link>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
