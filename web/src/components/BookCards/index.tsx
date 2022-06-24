@@ -28,8 +28,9 @@ function BookCards():JSX.Element {
                <Card.Img src={book.img} className="cardImg" />
               <Card.Body>
                 <Card.Title>{book.title}</Card.Title>
-                <Card.Subtitle>{book.author}</Card.Subtitle>
-                <Card.Text> R${book.price}</Card.Text>
+                <Card.Text className='card-text-itens'>Autor: {book.author}</Card.Text>
+                <Card.Text>Ano de lançamento: {book.year}</Card.Text>
+                <Card.Text> R${book.price} reais</Card.Text>
               </Card.Body>
                 <Button onClick={() => addCart(book.id)} className="buttonSaibaMais">
                   Adicionar Carrinho

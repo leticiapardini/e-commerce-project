@@ -19,6 +19,7 @@ interface ContextData {
   children?: ReactNode;
   removeCart: (product:number) => void ;
   total: number;
+  clearCart: () => void;
 }
 
 export const useContextCart = createContext<ContextData>({} as ContextData);

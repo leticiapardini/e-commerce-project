@@ -65,9 +65,7 @@ const Home = () => {
     }, []
   )
 
-
   const addCart = (productId: number) => {
-
     const verifica = products.map((book) => {
       const verificaId = book.id === productId;
       if (verificaId) {
@@ -86,7 +84,6 @@ const Home = () => {
     const findCart = cart.find((product) => product.id === productId)
     const cartBook = [...cart, ...filterBook]
 
-
     if(!findCart){
       setCart(cartBook)
       localStorage.setItem('LC__cart', JSON.stringify(cartBook))
@@ -101,7 +98,6 @@ const Home = () => {
         return item
       }
       }))
-
     }
 };
 
@@ -120,14 +116,15 @@ const Home = () => {
       setCart(arrayFiltro)
       localStorage.setItem('LC__cart', JSON.stringify(arrayFiltro))
     }
-
 }
 
 const total = cart.reduce((acc,prod) => {
     return acc += (prod.qty * prod.price)
   }, 0 )
 
-
+  const clearCart = () => {
+    setCart([])
+  }
 
   return (
     <useContextModal.Provider
@@ -147,7 +144,8 @@ const total = cart.reduce((acc,prod) => {
         cart,
         products,
         removeCart,
-        total
+        total,
+        clearCart
       }}
     >
       <>
