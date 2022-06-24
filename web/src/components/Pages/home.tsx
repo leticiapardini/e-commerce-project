@@ -5,6 +5,7 @@ import BookCards from '../BookCards';
 import Footer from '../Footer';
 import { api } from '../../defaults/endpoint';
 import { useContextCart } from '../../context/contextCart';
+import { useContextModal } from '../../context/contextModalCadastro';
 
 export interface Product {
   id: number;
@@ -18,7 +19,29 @@ export interface Product {
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
-  //const {addProduct, book} = useCart()
+  const [modal, setModal] = useState(false);
+  const [logado, setLogado] = useState(false);
+  const [modalCad, setModalCad] = useState(false);
+
+  const handleModalOpen = () => {
+    return setModal(true)
+  }
+
+  const handleModalClose = () => {
+    return setModal(false)
+  }
+
+  const handleModalOpenCad = () => {
+    return setModalCad(true)
+  }
+
+  const handleModalCloseCad = () => {
+    return setModalCad(false)
+  }
+
+  const estaLogado = () => {
+    return setLogado(true)
+  }
 
   useEffect(() => {
     api
@@ -107,6 +130,17 @@ const total = cart.reduce((acc,prod) => {
 
 
   return (
+    <useContextModal.Provider
+    value={{
+      estaLogado,
+      handleModalClose,
+      handleModalOpen,
+      logado,
+      modal,
+      handleModalCloseCad,
+      handleModalOpenCad,
+      modalCad
+    }}>
     <useContextCart.Provider
       value={{
         addCart,
@@ -123,6 +157,7 @@ const total = cart.reduce((acc,prod) => {
         <Footer></Footer>
       </>
     </useContextCart.Provider>
+    </useContextModal.Provider>
   );
 };
 

@@ -10,6 +10,16 @@ import UpdateUserUseCase from '../useCases/users/updateUser';
 
 const userRoutes = Router();
 
+//     cadastro
+userRoutes.post('/', async (request, response) => {
+  console.log(request.user.id);
+  const useCase = new CreateUserUseCase();
+  const user = await useCase.execute(request.body as UserDto);
+  delete user.password;
+
+  return response.status(201).send(user);
+});
+
 userRoutes.use(isAuthenticated);
 
 // USERS
@@ -47,15 +57,7 @@ userRoutes.get('/:id', async (request, response) => {
   return response.send(user);
 });
 
-//     cadastro
-userRoutes.post('/', async (request, response) => {
-  console.log(request.user.id);
-  const useCase = new CreateUserUseCase();
-  const user = await useCase.execute(request.body as UserDto);
-  delete user.password;
 
-  return response.status(201).send(user);
-});
 
 //     edição
 userRoutes.put('/:id', async (request, response) => {

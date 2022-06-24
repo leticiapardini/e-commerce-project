@@ -3,6 +3,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import '../Form/styles.css';
+import {useNavigate} from 'react-router-dom';
 import { api } from '../../defaults/endpoint';
 
 // Formulario de cadastro
@@ -16,16 +17,19 @@ const FormCadastro = () => {
 
 
   const [result, setResult] = useState({})
-  console.log(result)
-            if(result !== {}){
-              const teste = api.post('users/', result).then((response) => {
-                console.log(response.statusText)
-              }).catch((error) => {
-                  console.log(error)
-              })
-            }else{
-              console.log('deu certo')
-            }
+  const navigate = useNavigate();
+  // console.log(result)
+  //           if(result !== {}){
+  //             const teste = api.post('users/', result).then((response) => {
+  //               if(response.status === 200 && result !== {}){
+  //                 alert('Usuario Cadastrado')
+  //               }
+  //             }).catch((error) => {
+  //                 console.log(error)
+  //             })
+  //           }else{
+  //             console.log('deu certo')
+  //           }
 
 
 
@@ -87,7 +91,10 @@ const FormCadastro = () => {
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
           <Modal.Footer>
-            <Button type="submit" onClick={() => setResult(values)} className="buttonEntrar" id="buttonSubmit" variant="primary">
+            <Button type="submit" onClick={() => {
+              setResult(values)
+              alert('cadastro feito com sucesso')
+              }} className="buttonEntrar" id="buttonSubmit" variant="primary">
               Salvar
             </Button>
           </Modal.Footer>
