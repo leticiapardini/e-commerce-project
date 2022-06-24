@@ -12,7 +12,7 @@ const userRoutes = Router();
 
 //     cadastro
 userRoutes.post('/', async (request, response) => {
-  console.log(request.user.id);
+
   const useCase = new CreateUserUseCase();
   const user = await useCase.execute(request.body as UserDto);
   delete user.password;
@@ -56,8 +56,6 @@ userRoutes.get('/:id', async (request, response) => {
   delete user.password;
   return response.send(user);
 });
-
-
 
 //     edição
 userRoutes.put('/:id', async (request, response) => {

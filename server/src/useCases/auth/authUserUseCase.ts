@@ -43,7 +43,7 @@ export default class AuthUserUseCase {
     }
 
     // gerar o JWT
-    const jwt = sign({ role: user.role }, JwtSignKey, { subject: user.id });
+    const jwt = sign({ role: user.role }, JwtSignKey, { expiresIn: 60, subject: user.id });
 
     delete user.password;
 
