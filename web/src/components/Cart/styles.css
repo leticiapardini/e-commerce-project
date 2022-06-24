@@ -35,6 +35,9 @@ btn-primary {
   align-items: center;
   justify-content: center;
   color: black;
+  border: rgba(153, 50, 204) 5px solid;
+  margin: 1rem;
+  padding: 0.5rem;
 }
 
 /* .cardImg-2 {
@@ -42,12 +45,15 @@ btn-primary {
 } */
 
 .card-title {
-  font-size: 15px;
+  font-size: 18px;
 }
 
-.card-qty {
-  width: 75%;
-  border-radius: 5px;
+.card-subtitle {
+  margin-top: -0.25rem;
+  margin-bottom: 0;
+  font-size: 17px;
+  text-align: center;
+  color: red;
 }
 
 .buttonExcluir {
@@ -68,7 +74,35 @@ btn-primary {
   margin-top: 10%;
 }
 
-/* .total{
+.offcanvas-body {
+  background-color: rgba(47, 79, 79, 0.8);
+  color: #fff;
+}
 
-} */
+.offcanvas-header {
+  background-color: rgba(47, 79, 79, 0.8);
+  color: #fff;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+  font-size: 16px;
+  text-align: center;
+  padding-top: 0.2rem;
+}
+
+
+.total{
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.icon-carrinho{
+  background-color: rgba(153, 50, 204);
+  border-radius: 50%;
+  width: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
 

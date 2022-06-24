@@ -7,8 +7,9 @@ export default async function errorsMiddleware(err: any, request: Request, respo
   if (err instanceof FieldException) return response.send(err.errors).status(err.statusCode);
 
   if (err instanceof AuthException) return response.send({ message: err.message }).status(err.statusCode);
-
+  console.log(err)
   return response.send({
     message: genericExceptionMessage,
+  
   });
 }
