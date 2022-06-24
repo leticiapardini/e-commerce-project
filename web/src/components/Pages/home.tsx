@@ -24,46 +24,44 @@ const Home = () => {
   const [modalCad, setModalCad] = useState(false);
 
   const handleModalOpen = () => {
-    return setModal(true)
-  }
+    return setModal(true);
+  };
 
   const handleModalClose = () => {
-    return setModal(false)
-  }
+    return setModal(false);
+  };
 
   const handleModalOpenCad = () => {
-    return setModalCad(true)
-  }
+    return setModalCad(true);
+  };
 
   const handleModalCloseCad = () => {
-    return setModalCad(false)
-  }
+    return setModalCad(false);
+  };
 
   const estaLogado = () => {
-    return setLogado(true)
-  }
+    return setLogado(true);
+  };
 
   useEffect(() => {
     api
       .get('products')
       .then((response) => {
         setProducts(response.data);
-        console.log(response.data)
+        console.log(response.data);
       })
       .catch((erro: any) => {
         console.log(`${erro} Ops deu um erro`);
       });
   }, []);
 
-  useEffect(
-    () => {
-     const storeCart = localStorage.getItem('LC__cart')
-     if (!storeCart) return;
+  useEffect(() => {
+    const storeCart = localStorage.getItem('LC__cart');
+    if (!storeCart) return;
 
-     const parsedStoredCart = JSON.parse(storeCart)
-     setCart(parsedStoredCart)
-    }, []
-  )
+    const parsedStoredCart = JSON.parse(storeCart);
+    setCart(parsedStoredCart);
+  }, []);
 
   const addCart = (productId: number) => {
     const verifica = products.map((book) => {
@@ -80,81 +78,87 @@ const Home = () => {
       }
     });
 
-    const filterBook = verifica.filter(book => book.id === productId)
-    const findCart = cart.find((product) => product.id === productId)
-    const cartBook = [...cart, ...filterBook]
+    const filterBook = verifica.filter((book) => book.id === productId);
+    const findCart = cart.find((product) => product.id === productId);
+    const cartBook = [...cart, ...filterBook];
 
-    if(!findCart){
-      setCart(cartBook)
-      localStorage.setItem('LC__cart', JSON.stringify(cartBook))
-    }else{
-      setCart(cart.map(item => {
-        if(item.id === productId){
-        return ({
-          ...item,
-           qty : item.qty + 1
-        })
-      }else{
-        return item
-      }
-      }))
+    if (!findCart) {
+      setCart(cartBook);
+      localStorage.setItem('LC__cart', JSON.stringify(cartBook));
+    } else {
+      setCart(
+        cart.map((item) => {
+          if (item.id === productId) {
+            return {
+              ...item,
+              qty: item.qty + 1,
+            };
+          } else {
+            return item;
+          }
+        }),
+      );
     }
-};
+  };
 
   const removeCart = (productId: number) => {
-    const findCart = cart.find((product) => product.id === productId)
+    const findCart = cart.find((product) => product.id === productId);
 
-    if(findCart!.qty > 1) {
-      setCart(cart.map(item => {
-        return({
-          ...item,
-          qty: item.qty - 1
-        })
-      }))
-    }else{
-      const arrayFiltro = cart.filter(product => product.id !== productId);
-      setCart(arrayFiltro)
-      localStorage.setItem('LC__cart', JSON.stringify(arrayFiltro))
+    if (findCart!.qty > 1) {
+      setCart(
+        cart.map((item) => {
+          return {
+            ...item,
+            qty: item.qty - 1,
+          };
+        }),
+      );
+    } else {
+      const arrayFiltro = cart.filter((product) => product.id !== productId);
+      setCart(arrayFiltro);
+      localStorage.setItem('LC__cart', JSON.stringify(arrayFiltro));
     }
-}
+  };
 
-const total = cart.reduce((acc,prod) => {
-    return acc += (prod.qty * prod.price)
-  }, 0 )
+  const total = cart.reduce((acc, prod) => {
+    return (acc += prod.qty * prod.price);
+  }, 0);
 
   const clearCart = () => {
-    setCart([])
-  }
+    setCart([]);
+  };
 
   return (
     <useContextModal.Provider
-    value={{
-      estaLogado,
-      handleModalClose,
-      handleModalOpen,
-      logado,
-      modal,
-      handleModalCloseCad,
-      handleModalOpenCad,
-      modalCad
-    }}>
-    <useContextCart.Provider
       value={{
-        addCart,
-        cart,
-        products,
-        removeCart,
-        total,
-        clearCart
+        estaLogado,
+        handleModalClose,
+        handleModalOpen,
+        logado,
+        modal,
+        handleModalCloseCad,
+        handleModalOpenCad,
+        modalCad,
       }}
     >
-      <>
-        <NavBar></NavBar>
-        <Carrousel></Carrousel>
-        <BookCards></BookCards>
-        <Footer></Footer>
-      </>
-    </useContextCart.Provider>
+      <useContextCart.Provider
+        value={{
+          addCart,
+          cart,
+          products,
+          removeCart,
+          total,
+          clearCart,
+          setCart,
+        }}
+      >
+        <>
+          <NavBar></NavBar>
+          <Carrousel></Carrousel>
+          <BookCards></BookCards>
+          <Footer></Footer>
+        </>
+      </useContextCart.Provider>
     </useContextModal.Provider>
   );
 };
