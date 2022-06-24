@@ -12,6 +12,7 @@ const userRoutes = Router();
 
 //     cadastro
 userRoutes.post('/', async (request, response) => {
+
   const useCase = new CreateUserUseCase();
   const user = await useCase.execute(request.body as UserDto);
   delete user.password;

@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import { useContextModal } from '../../context/contextModalCadastro';
 import { FormCadastro } from '../FormCadastro';
 import '../Modal/styles.css';
 
 const ModalCadastro = () => {
-  const [show, setShow] = useState(false);
+  const {handleModalCloseCad, handleModalOpenCad, modalCad} = useContext(useContextModal)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button className="buttonEntrar" variant="primary" onClick={handleShow}>
+      <Button className="buttonEntrar" variant="primary" onClick={handleModalOpenCad}>
         Ainda não tem Cadastro? Clique aqui!
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={modalCad} onHide={handleModalCloseCad}>
         <Modal.Header closeButton>
           <Modal.Title>Faça seu login</Modal.Title>
         </Modal.Header>
