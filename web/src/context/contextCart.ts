@@ -20,6 +20,7 @@ interface ContextData {
   removeCart: (product:number) => void ;
   total: number;
   clearCart: () => void;
+  setCart: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 export const useContextCart = createContext<ContextData>({} as ContextData);

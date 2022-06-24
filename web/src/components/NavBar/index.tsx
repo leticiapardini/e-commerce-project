@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 // import Navbar from 'react-bootstrap/Navbar';
 import logo from '../logo/logoFinal.png';
@@ -7,16 +7,13 @@ import { CadastreModal } from '../Modal';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import '../Cart/styles.css';
-import { ShoppingCartOutlined } from '@ant-design/icons';
 
 function NavBar() {
-
   const [openNavLink, setOpenNavLink] = useState(false);
 
   const open = () => {
     setOpenNavLink(true);
   };
-
 
   return (
     <>
@@ -31,16 +28,6 @@ function NavBar() {
               <Link to={'/'}>
                 <Button onClick={open} className="me-2">
                   Home
-                </Button>
-              </Link>
-              <Link to="/quemSomos">
-                <Button onClick={open} className="me-2">
-                  Quem Somos
-                </Button>
-              </Link>
-              <Link to="/contatos">
-                <Button onClick={open} className="me-2">
-                  Contatos
                 </Button>
               </Link>
             </Nav>

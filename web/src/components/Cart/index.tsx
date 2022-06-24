@@ -1,12 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import { Button, Card, Offcanvas } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import './styles.css';
 import { useContextCart } from '../../context/contextCart';
-import { Empty, Popconfirm } from 'antd';
+import { Alert, Empty, Popconfirm } from 'antd';
+import { useContextModal } from '../../context/contextModalCadastro';
+import Swal from 'sweetalert2';
 
 export interface Product {
   id: number;
@@ -19,9 +20,11 @@ export interface Product {
 }
 
 function CartProduct() {
-  const { removeCart, cart, total, clearCart } = useContext(useContextCart);
+  const { removeCart, cart, total, clearCart, setCart } = useContext(useContextCart);
+  const { logado } = useContext(useContextModal);
   const [show, setShow] = useState(false);
-  const [finalizarCompra, setFinalizarCompra] = useState(false);
+
+  const numeroCompra = Math.floor(Math.random() * 1000);
 
   const handleClose = () => {
     setShow(false);
@@ -29,12 +32,29 @@ function CartProduct() {
   const handleShow = () => {
     setShow(true);
   };
+  useEffect(() => {
+    const storeCart = localStorage.getItem('LC__cart');
+    if (!storeCart) return;
+
+    const parsedStoredCart = JSON.parse(storeCart);
+    setCart(parsedStoredCart);
+  }, []);
+
+  const finalizacaoCarrinho = () => {
+    Swal.fire(
+      'Compra realizada com sucesso!',
+      `Seu numero do pedido é ${numeroCompra} !! Volte
+  sempre a Lilás Livraria`,
+    );
+    setCart([]);
+    localStorage.setItem('LC__cart', JSON.stringify(cart));
+  };
 
   return (
     <>
       <Button onClick={handleShow} className="me-2">
         <ShoppingCartOutlined style={{ fontSize: '30px' }} />
-        <div className='icon-carrinho'> {cart.length}</div>
+        <div className="icon-carrinho"> {cart.length || 0}</div>
       </Button>
       <Offcanvas placement="end" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
@@ -56,17 +76,17 @@ function CartProduct() {
                         <Card.Text className="card-price">R$: {book.price} reais</Card.Text>
                       </Card.Body>
                       <Popconfirm
-                                placement="bottomRight"
-                                title={'Tem certeza que deseja excluir o item do carrinho?'}
-                                icon={<DeleteOutlined style={{ fontSize: '20px', color: 'red' }} />}
-                                onConfirm={() => removeCart(book.id)}
-                                okText="Excluir"
-                                cancelText="Cancelar"
-                                okButtonProps={{ danger: true }}
-                            >
-                      <Button  className="buttonExcluir">
-                         <DeleteOutlined style={{ fontSize: '20px', color: 'red' }} />
-                      </Button>
+                        placement="bottomRight"
+                        title={'Tem certeza que deseja excluir o item do carrinho?'}
+                        icon={<DeleteOutlined style={{ fontSize: '20px', color: 'red' }} />}
+                        onConfirm={() => removeCart(book.id)}
+                        okText="Excluir"
+                        cancelText="Cancelar"
+                        okButtonProps={{ danger: true }}
+                      >
+                        <Button className="buttonExcluir">
+                          <DeleteOutlined style={{ fontSize: '20px', color: 'red' }} />
+                        </Button>
                       </Popconfirm>
                     </div>
                   </>
@@ -83,18 +103,19 @@ function CartProduct() {
                     cancelText="Cancelar"
                     okButtonProps={{ danger: true }}
                   >
-                    <Button className="buttonFinalizar">
-                      {' '}
-                      Limpar Carrinho
-                    </Button>
+                    <Button className="buttonFinalizar"> Limpar Carrinho</Button>
                   </Popconfirm>
                 </>
-                <Link to={'/cadastro'}>
-                  <Button onClick={() => setFinalizarCompra(true)} className="buttonFinalizar">
-                    {' '}
-                    Finalizar Compra
-                  </Button>
-                </Link>
+
+                <Button
+                  onClick={() => {
+                    logado ? finalizacaoCarrinho() : Swal.fire('Você precisa estár logado para finalizar a compra!');
+                  }}
+                  className="buttonFinalizar"
+                >
+                  {' '}
+                  Finalizar Compra
+                </Button>
               </>
             </>
           ) : (
