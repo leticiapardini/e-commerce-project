@@ -6,7 +6,7 @@ import { errors } from 'celebrate';
 import errorsMiddleware from './middlewares/errors';
 import logMiddleware from './middlewares/logs';
 import routes from './routes';
-import { AppDataSource } from './db/context';
+import  { AppDataSource }  from './db/context';
 import Role from './models/Role';
 
 const server = express();

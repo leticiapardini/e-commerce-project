@@ -13,9 +13,10 @@
   border: 5px solid rgba(0, 139, 139);
 }
 .cardImg {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 180px;
   margin-left: 33%;
+  padding-top: 5px;
 }
 
 .buttonSaibaMais {
